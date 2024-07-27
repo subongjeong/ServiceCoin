@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Coin</title>
+    <style>
+        body {
+            background-color: black;
+            color: white; /* 텍스트 색상 설정 */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .header-img {
+            width: 70%; /* 창 가로의 70% */
+            height: auto; /* 이미지 비율 유지 */
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .image-button {
+            background: url('button.png') no-repeat center;
+            background-size: cover;
+            width: 70%; /* 창 가로의 70% */
+            height: 70vw; /* 높이를 너비와 동일하게 설정 */
+            max-width: 300px; /* 최대 너비 설정 */
+            max-height: 300px; /* 최대 높이 설정 */
+            border: none;
+            cursor: pointer;
+            margin: 10px 0; /* 버튼 사이 간격 조정 */
+            color: white; /* 글씨 색상 흰색 */
+            font-weight: bold; /* 글씨 굵게 */
+            font-size: 2em; /* 글씨 크기를 현재 사이즈의 2배로 설정 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+    </style>
+    <script>
+        function sendRequestK01(command) {
+            const kioskId = "PK_STA_240724_02";
+            const url = "https://fr.api-plinqer.com/kiosk/control";
+            const data = {
+                kioskId: kioskId,
+                command: command
+            };
+
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {                
+                alert("Coin input completed");
+            })
+            .catch(error => {                
+                alert("Error");
+            });
+        }
+
+        function sendRequestK02(command) {
+            const kioskId = "PK_STA_240724_01";
+            const url = "https://fr.api-plinqer.com/kiosk/control";
+            const data = {
+                kioskId: kioskId,
+                command: command
+            };
+
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {                
+                alert("Coin input completed");
+            })
+            .catch(error => {                
+                alert("Error");
+            });
+        }
+    </script>
+</head>
+<body>
+    <img src="kpop.png" alt="Kpop Image" class="header-img">
+    <div class="button-container">
+        <button class="image-button" onclick="sendRequestK01('coin10')">K-01 Coin</button>    
+        <button class="image-button" onclick="sendRequestK02('coin10')">K-02 Coin</button>    
+    </div>
+</body>
+</html>
